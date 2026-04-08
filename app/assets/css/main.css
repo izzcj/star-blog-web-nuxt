@@ -1,0 +1,630 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* ─── 自定义字体 ─── */
+@font-face {
+  font-family: 'DingLieZhuHai';
+  src: url('../fonts/dingliezhuhai-font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('../fonts/HarmonyOS_Sans_Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ui-container: 100%;
+  --app-font: 'HarmonyOS Sans';
+}
+
+body {
+  font-family: var(--app-font), system-ui, sans-serif;
+}
+
+@theme {
+  /* 清新系配色 - 薄荷绿主色调 */
+  --color-mint-50: #f0fdf9;
+  --color-mint-100: #ccfbef;
+  --color-mint-200: #99f6e0;
+  --color-mint-300: #5eead4;
+  --color-mint-400: #2dd4bf;
+  --color-mint-500: #14b8a6;
+  --color-mint-600: #0d9488;
+  --color-mint-700: #0f766e;
+  --color-mint-800: #115e59;
+  --color-mint-900: #134e4a;
+
+  /* 青柠绿辅助色 */
+  --color-lime-accent: #84cc16;
+  --color-lime-light: #bef264;
+  --color-lime-dark: #65a30d;
+
+  /* 翠玉绿强调色 */
+  --color-emerald-accent: #059669;
+  --color-emerald-deep: #047857;
+
+  /* 新拟态阴影系统 */
+  --shadow-neumorphic-sm:
+    2px 2px 4px rgba(16, 185, 129, 0.1),
+    -2px -2px 4px rgba(255, 255, 255, 0.8);
+
+  --shadow-neumorphic:
+    4px 4px 12px rgba(16, 185, 129, 0.12),
+    -4px -4px 12px rgba(255, 255, 255, 0.9),
+    0 8px 24px rgba(16, 185, 129, 0.08);
+
+  --shadow-neumorphic-lg:
+    6px 6px 16px rgba(16, 185, 129, 0.15),
+    -6px -6px 16px rgba(255, 255, 255, 0.95),
+    0 12px 32px rgba(16, 185, 129, 0.1);
+
+  /* 新拟态内凹阴影 */
+  --shadow-neumorphic-inset:
+    inset 2px 2px 5px rgba(16, 185, 129, 0.15),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+
+  /* 悬停态阴影 */
+  --shadow-neumorphic-hover:
+    6px 6px 16px rgba(16, 185, 129, 0.18),
+    -6px -6px 16px rgba(255, 255, 255, 1),
+    0 16px 40px rgba(16, 185, 129, 0.12);
+}
+
+/* 新拟态凸起效果 */
+@utility neumorphic {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-neumorphic);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+@utility neumorphic-sm {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-neumorphic-sm);
+  border: 1px solid rgba(16, 185, 129, 0.08);
+}
+
+@utility neumorphic-lg {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-neumorphic-lg);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+/* 新拟态内凹效果 */
+@utility neumorphic-inset {
+  box-shadow: var(--shadow-neumorphic-inset);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+/* 新拟态悬停态 */
+@utility neumorphic-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow: var(--shadow-neumorphic-hover);
+    transform: translateY(-4px);
+  }
+}
+
+/* 玻璃拟态效果 */
+@utility glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 杂志风特色卡片网格 */
+@utility featured-card {
+  @media (min-width: 768px) {
+    grid-column: span 2;
+  }
+}
+
+/* 粘性筛选栏 */
+@utility sticky-filter {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+  background: rgba(240, 253, 249, 0.8);
+  transition: all 0.3s ease;
+}
+
+/* 杂志风混合网格布局 */
+@utility magazine-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+/* 特色卡片横向布局 */
+@utility featured-layout {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+/* GPU加速 */
+@utility gpu-accelerate {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* 图片优化 */
+@utility img-optimize {
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* 内容包含优化 */
+@utility contain-layout {
+  contain: layout style paint;
+}
+
+/* 动画定义 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes pulse-mint {
+  0%, 100% {
+    background-color: #f0fdf9;
+  }
+  50% {
+    background-color: #ccfbef;
+  }
+}
+
+@keyframes shimmer-mint {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* 动画工具类 */
+@utility animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@utility animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@utility animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+@utility animate-pulse-mint {
+  animation: pulse-mint 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@utility animate-shimmer-mint {
+  background: linear-gradient(
+    90deg,
+    #f0fdf9 0%,
+    #ccfbef 50%,
+    #f0fdf9 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer-mint 2s ease-in-out infinite;
+}
+
+@utility animate-ripple {
+  animation: ripple 0.6s cubic-bezier(0, 0, 0.2, 1);
+}
+
+@utility animate-skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0fdf9 25%,
+    #ccfbef 50%,
+    #f0fdf9 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+    transition: background 0.2s;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+}
+
+@utility fade-children {
+  > * {
+    opacity: 0
+  }
+}
+
+/* 卡片悬停光晕效果 */
+@utility card-glow {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    box-shadow:
+      0 0 0 1px rgba(20, 184, 166, 0.2),
+      0 8px 32px rgba(20, 184, 166, 0.18),
+      0 20px 60px rgba(20, 184, 166, 0.1),
+      -6px -6px 16px rgba(255, 255, 255, 0.95);
+    transform: translateY(-6px);
+  }
+}
+
+/* 特色卡片 - 全覆盖式英雄卡片 */
+@utility hero-card {
+  @media (min-width: 768px) {
+    grid-column: span 3;
+  }
+}
+
+/* 分类标签色彩系统 */
+@utility tag-mint {
+  background: rgba(20, 184, 166, 0.15);
+  color: #0d9488;
+  border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+/* 极光背景 */
+@utility aurora-bg {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgba(20, 184, 166, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 0%, rgba(5, 150, 105, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(132, 204, 22, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, #f0fdf9 0%, #ffffff 50%, #f0fdf9 100%);
+}
+
+/* 文章网格 - 改进版 */
+@utility article-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+/* 动画：浮动效果 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* 动画：极光渐变流动 */
+@keyframes aurora-shift {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* 动画：卡片入场 */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 动画：光晕脉冲 */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.3); }
+}
+
+/* 动画：文字淡入从下 */
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@utility animate-card-enter {
+  animation: cardEnter 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility animate-glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@utility animate-text-reveal {
+  animation: textReveal 0.5s ease-out both;
+}
+
+/* 玻璃态筛选栏 */
+@utility glass-filter {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 4px 24px rgba(20, 184, 166, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* 分类激活按钮 */
+@utility category-active {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  color: white;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.35);
+}
+
+/* 分类默认按钮 */
+@utility category-default {
+  background: rgba(255, 255, 255, 0.8);
+  color: #475569;
+  border: 1px solid rgba(20, 184, 166, 0.15);
+  box-shadow: 2px 2px 6px rgba(20, 184, 166, 0.08), -2px -2px 6px rgba(255, 255, 255, 0.9);
+
+  &:hover {
+    background: rgba(240, 253, 249, 0.95);
+    color: #0d9488;
+    border-color: rgba(20, 184, 166, 0.3);
+    box-shadow: 3px 3px 10px rgba(20, 184, 166, 0.12), -3px -3px 10px rgba(255, 255, 255, 1);
+  }
+}
+
+/* 英雄横幅波浪底部 */
+@utility banner-wave {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: inherit;
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+}
+
+/* 阅读进度指示 */
+@utility read-badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+/* 数字统计卡片 */
+@utility stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(20, 184, 166, 0.15);
+  box-shadow: 0 2px 12px rgba(20, 184, 166, 0.08);
+}
+
+/* 搜索框焦点发光 */
+@utility search-glow {
+  &:focus-within {
+    box-shadow:
+      0 0 0 3px rgba(20, 184, 166, 0.15),
+      0 4px 20px rgba(20, 184, 166, 0.1);
+  }
+}
+
+/* ─── 文字阴影工具类 ─── */
+
+/* 横幅深色文字阴影 */
+@utility text-shadow-banner {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 横幅浅色文字阴影 */
+@utility text-shadow-banner-light {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 卡片标题文字阴影 */
+@utility text-shadow-card {
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 极小文字阴影 */
+@utility text-shadow-xs {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── 渐变背景工具类 ─── */
+
+/* Hero Banner 无图时极光渐变背景 */
+@utility banner-aurora-gradient {
+  background: linear-gradient(
+    135deg,
+    #0d9488 0%,
+    #14b8a6 25%,
+    #0f766e 50%,
+    #065f46 75%,
+    #134e4a 100%
+  );
+}
+
+/* 径向光晕 - 薄荷色（用于装饰球） */
+@utility glow-radial-mint {
+  background: radial-gradient(circle, #5eead4, transparent);
+}
+
+/* 径向光晕 - 石灰色（用于装饰球） */
+@utility glow-radial-lime {
+  background: radial-gradient(circle, #84cc16, transparent);
+}
+
+/* 作者/用户头像渐变背景 */
+@utility avatar-gradient {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+}
+
+/* 阅读全文按钮样式 */
+@utility btn-read-gradient {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  box-shadow: 0 4px 14px rgba(20, 184, 166, 0.35);
+}
+
+/* 封面图上方分类标签 */
+@utility cover-tag {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0d9488;
+  border: 1px solid rgba(20, 184, 166, 0.25);
+}
+
+/* 置顶标识（封面图上，高对比度玻璃态） */
+@utility badge-top-bg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(248, 52, 52, 0.82);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+/* 精选标识（封面图上，高对比度玻璃态） */
+@utility badge-rec-bg {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(26, 113, 225, 0.82);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片底部渐变进度条 */
+@utility progress-mint-lime {
+  background: linear-gradient(90deg, #14b8a6, #84cc16);
+}
+
+/* ─── 容器玻璃/光晕样式 ─── */
+
+/* 空状态玻璃态卡片 */
+@utility empty-state-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(20, 184, 166, 0.15);
+  box-shadow: 0 8px 40px rgba(20, 184, 166, 0.08);
+}
+
+/* 空状态图标渐变背景 */
+@utility empty-icon-bg {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 184, 166, 0.1),
+    rgba(132, 204, 22, 0.1)
+  );
+}
+
+/* 分页栏玻璃态包装 */
+@utility pagination-glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(20, 184, 166, 0.12);
+  box-shadow: 0 4px 24px rgba(20, 184, 166, 0.08);
+}
+
+/* 卡片轻量阴影（骨架/白底卡片） */
+@utility shadow-card-subtle {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}

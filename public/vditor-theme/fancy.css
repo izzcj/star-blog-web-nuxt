@@ -1,0 +1,368 @@
+/* Vditor 主题样式 - 基于原 ByteMD 样式修改 */
+
+:root {
+  --theme-color: #a862ea;
+  --sub-color: #e7daff;
+  --text-color: #383838;
+  --bg-color: #ffffff;
+  --light-color: #f8f5ff;
+  --font-size: 15px;
+  --line-space: 12px;
+  --line-height: 2.5;
+  --monospace-font: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.vditor-reset:not(.vditor-sv) {
+  color: var(--text-color);
+  font-size: var(--font-size);
+  line-height: calc(var(--line-height) * var(--line-space));
+  letter-spacing: 2px;
+  word-break: break-word;
+  font-family: var(--font-family), serif;
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+  padding-bottom: 60px;
+}
+
+/* 网格背景效果 */
+.vditor-reset:not(.vditor-sv) {
+  background-image:
+    linear-gradient(
+      0deg,
+      transparent 24%,
+      rgba(201, 195, 195, 0.329) 25%,
+      rgba(209, 201, 201, 0.05) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(209, 204, 204, 0.185) 75%,
+      rgba(180, 176, 176, 0.05) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      rgba(204, 196, 196, 0.226) 25%,
+      rgba(172, 165, 165, 0.05) 26%,
+      transparent 27%,
+      transparent 74%,
+      rgba(209, 204, 204, 0.185) 75%,
+      rgba(180, 176, 176, 0.05) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 50px 50px;
+}
+
+::selection {
+  color: #fff;
+  background-color: var(--theme-color);
+}
+
+/* 标题样式 */
+.vditor-reset h1,
+.vditor-reset h2,
+.vditor-reset h3,
+.vditor-reset h4,
+.vditor-reset h5,
+.vditor-reset h6,
+.vditor-ir__node[data-type="heading"],
+.vditor-sv h1,
+.vditor-sv h2,
+.vditor-sv h3,
+.vditor-sv h4,
+.vditor-sv h5,
+.vditor-sv h6 {
+  margin: calc(var(--line-space) * 2) 0 var(--line-space) 0;
+  color: var(--theme-color);
+}
+
+.vditor-reset h1,
+.vditor-sv h1,
+.vditor-ir__node[data-type="heading"][data-heading="1"] {
+  line-height: 2;
+  font-size: 1.4em;
+}
+
+/* 首字下沉效果 */
+.vditor-reset h1 ~ p:first-of-type::first-letter,
+.vditor-sv h1 ~ p:first-of-type::first-letter {
+  color: var(--theme-color);
+  float: left;
+  font-size: 2em;
+  margin-right: 0.4em;
+  font-weight: bolder;
+}
+
+.vditor-reset h2,
+.vditor-sv h2,
+.vditor-ir__node[data-type="heading"][data-heading="2"] {
+  font-size: 1.2em;
+}
+
+.vditor-reset h3,
+.vditor-sv h3,
+.vditor-ir__node[data-type="heading"][data-heading="3"] {
+  font-size: 1.1em;
+}
+
+/* 列表样式 */
+.vditor-reset ol,
+.vditor-reset ul,
+.vditor-sv ol,
+.vditor-sv ul,
+.vditor-ir__node[data-type="list"] {
+  padding-left: 2em;
+}
+
+.vditor-reset li,
+.vditor-sv li,
+.vditor-ir__node[data-type="listItem"] {
+  margin-bottom: 0;
+  padding-left: 0.2em;
+}
+
+.vditor-reset li::marker,
+.vditor-sv li::marker {
+  color: var(--theme-color);
+}
+
+/* 任务列表项 */
+.vditor-reset .vditor-task,
+.vditor-sv .vditor-task {
+  list-style: none;
+}
+
+/* 文本元素样式 */
+.vditor-reset p,
+.vditor-reset li,
+.vditor-reset code,
+.vditor-reset h1,
+.vditor-reset h2,
+.vditor-reset h3,
+.vditor-reset h4,
+.vditor-reset h5,
+.vditor-reset h6,
+.vditor-reset a,
+.vditor-sv p,
+.vditor-sv li,
+.vditor-sv code,
+.vditor-sv h1,
+.vditor-sv h2,
+.vditor-sv h3,
+.vditor-sv h4,
+.vditor-sv h5,
+.vditor-sv h6,
+.vditor-sv a {
+  opacity: 0.85;
+  vertical-align: baseline;
+  transition: all 0.1s ease;
+}
+
+.vditor-reset p:hover,
+.vditor-reset li:hover,
+.vditor-reset code:hover,
+.vditor-reset h1:hover,
+.vditor-reset h2:hover,
+.vditor-reset h3:hover,
+.vditor-reset h4:hover,
+.vditor-reset h5:hover,
+.vditor-reset h6:hover,
+.vditor-reset a:hover,
+.vditor-sv p:hover,
+.vditor-sv li:hover,
+.vditor-sv code:hover,
+.vditor-sv h1:hover,
+.vditor-sv h2:hover,
+.vditor-sv h3:hover,
+.vditor-sv h4:hover,
+.vditor-sv h5:hover,
+.vditor-sv h6:hover,
+.vditor-sv a:hover {
+  opacity: 1;
+}
+
+/* 链接样式 */
+.vditor-reset a,
+.vditor-sv a {
+  position: relative;
+  display: inline-block;
+  color: var(--theme-color);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.vditor-reset a::after,
+.vditor-sv a::after {
+  content: '';
+  position: absolute;
+  width: 98%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0);
+  background-color: var(--theme-color);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.vditor-reset a:hover::after,
+.vditor-sv a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* 图片样式 */
+.vditor-reset img,
+.vditor-sv img {
+  max-width: 100%;
+  user-select: none;
+  margin: 1em 0;
+  transition: transform 0.2s ease 0s;
+  background-color: var(--light-color);
+  box-shadow: 0 0 10px var(--sub-color);
+}
+
+.vditor-reset img:hover,
+.vditor-sv img:hover {
+  opacity: 1;
+  box-shadow: 0 0 20px var(--sub-color);
+  transform: translateY(-1px);
+}
+
+/* 引用块样式 */
+.vditor-reset blockquote,
+.vditor-sv blockquote,
+.vditor-ir__node[data-type="blockquote"] {
+  padding: 0.5em 1em;
+  margin: var(--line-space) 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-left: 3px solid var(--theme-color);
+  background-color: var(--light-color);
+}
+
+.vditor-reset blockquote > p,
+.vditor-sv blockquote > p {
+  margin: 0;
+}
+
+/* 数学公式样式 */
+.vditor-reset .katex,
+.vditor-sv .katex {
+  font-style: italic;
+  margin: var(--line-space) 0;
+  padding: 0.5em 1em;
+  background-color: var(--light-color);
+}
+
+/* 行内代码样式 */
+.vditor-reset code,
+.vditor-sv code,
+.vditor-ir__node[data-type="codeInline"] {
+  padding: 2px 0.4em;
+  overflow-x: auto;
+  color: var(--theme-color);
+  font-weight: bold;
+  word-break: break-word;
+  font-family: var(--monospace-font), serif;
+  background-color: var(--light-color);
+}
+
+/* 代码块样式 */
+.vditor-reset pre,
+.vditor-sv pre {
+  margin: 2em 0;
+}
+
+.vditor-reset pre > code,
+.vditor-sv pre > code,
+.vditor-ir__node[data-type="codeBlock"] {
+  display: block;
+  padding: 1.5em;
+  word-break: normal;
+  font-size: 0.9em;
+  font-style: normal;
+  font-weight: normal;
+  font-family: var(--monospace-font), serif;
+  line-height: calc(1.5 * var(--line-space));
+  color: var(--text-color);
+  border-radius: 2px;
+  scroll-behavior: smooth;
+  box-shadow: 0 0 10px var(--sub-color);
+}
+
+.vditor-reset pre > code:hover,
+.vditor-sv pre > code:hover,
+.vditor-ir__node[data-type="codeBlock"]:hover {
+  box-shadow: 0 0 20px var(--sub-color);
+}
+
+/* 代码块滚动条 */
+.vditor-reset pre > code::-webkit-scrollbar,
+.vditor-sv pre > code::-webkit-scrollbar,
+.vditor-ir__node[data-type="codeBlock"]::-webkit-scrollbar {
+  height: 6px;
+  background-color: var(--light-color);
+}
+
+.vditor-reset pre > code::-webkit-scrollbar-thumb,
+.vditor-sv pre > code::-webkit-scrollbar-thumb,
+.vditor-ir__node[data-type="codeBlock"]::-webkit-scrollbar-thumb {
+  background-color: var(--sub-color);
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/* 分割线样式 */
+.vditor-reset hr,
+.vditor-sv hr,
+.vditor-ir__node[data-type="thematicBreak"] {
+  margin: 2em 0;
+  border-top: 1px solid var(--theme-color);
+}
+
+/* 表格样式 */
+.vditor-reset table,
+.vditor-sv table {
+  width: 100%;
+  font-size: 12px;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+}
+
+.vditor-reset thead,
+.vditor-sv thead {
+  color: var(--theme-color);
+  background: var(--light-color);
+}
+
+.vditor-reset td,
+.vditor-reset th,
+.vditor-sv td,
+.vditor-sv th {
+  padding: 0.5em;
+  border: solid 1px var(--sub-color);
+}
+
+.vditor-reset tr,
+.vditor-sv tr {
+  background-color: var(--light-color);
+}
+
+/* 移动端适配 */
+@media (max-width: 720px) {
+  .vditor-reset,
+  .vditor-ir__node,
+  .vditor-sv {
+    font-size: 12px;
+  }
+}
+
+/* 编辑器内容区域 */
+.vditor-content {
+  background-color: var(--bg-color);
+}

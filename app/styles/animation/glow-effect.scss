@@ -1,0 +1,48 @@
+/*-------------------- 默认样式 ----------------------*/
+:root {
+  --venus-glow-start-color: rgba(255, 255, 255, 0);
+  --venus-glow-middle-color: rgba(64, 158, 255);
+  --venus-glow-end-color: rgba(255, 255, 255, 0);
+  --venus-glow-animation-duration: 8s;
+}
+
+.glow-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-effect::before {
+  content: '';
+  position: absolute;
+  // top乘2加height要等与100%，left和width一样，这样才能保证背景处于目标中心
+  top: -25%;
+  left: 10%;
+  width: 80%;
+  height: 150%;
+  background: linear-gradient(
+    90deg,
+    var(--venus-glow-start-color),
+    var(--venus-glow-middle-color),
+    var(--venus-glow-end-color),
+  );
+  animation: glow-flow var(--venus-glow-animation-duration) linear infinite;
+  z-index: 0;
+}
+
+/* 流光动画 */
+@keyframes glow-flow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 内容区域，确保内容在流光之上 */
+.glow-content {
+  position: relative;
+  z-index: -1;
+}
+
+

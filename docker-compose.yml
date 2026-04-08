@@ -1,0 +1,14 @@
+services:
+  star-blog-web-nuxt:
+    image: ${IMAGE_NAME:-star-blog-web-nuxt:latest}
+    env_file:
+      - .env.production
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: Asia/Shanghai
+    restart: unless-stopped
+    networks:
+      - star-blog-network
+networks:
+  star-blog-network:

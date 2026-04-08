@@ -1,0 +1,76 @@
+.markdown-body pre {
+  position: relative;
+  box-shadow: 0 0 10px #e7daff;
+}
+
+.markdown-body pre:hover {
+  box-shadow: 0 0 20px #e7daff;
+}
+
+.markdown-body pre > code {
+  box-shadow: none;
+}
+.markdown-body pre > code:hover {
+  box-shadow: none;
+}
+
+.code-block-extension-header {
+  display: flex;
+  user-select: none;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  background-color: #f8f5ff;
+  box-shadow: 0 4px 5px -6px #888888;
+  padding: 0.5em 1em;
+}
+
+.code-block-extension-header.code-block-extension-fold {
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.code-block-extension-headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  color: #707070;
+  margin-right: 8px;
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn:hover {
+  cursor: pointer;
+  color: #1890ff;
+}
+
+.code-block-extension-headerLeft > .code-block-extension-foldBtn.code-block-extension-fold {
+  transform: rotate(-90deg);
+}
+
+.code-block-extension-headerRight {
+  cursor: pointer;
+}
+
+.code-block-extension-headerRight > .code-block-extension-copyCodeBtn {
+  font-size: 12px;
+  filter: invert(0.5);
+  opacity: 0.6;
+  display: inline-flex;
+  align-items: center;
+}
+
+.code-block-extension-headerRight > .code-block-extension-copyCodeBtn:hover {
+  opacity: 1;
+}
+
+pre > code.code-block-extension-fold {
+  display: none !important;
+}

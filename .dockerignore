@@ -1,0 +1,12 @@
+.git
+.github
+.idea
+.claude
+.nuxt
+.output
+node_modules
+npm-debug.log*
+pnpm-debug.log*
+dist
+CLAUDE.md
+README.md
